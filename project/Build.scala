@@ -3,13 +3,13 @@ import sbt.Keys._
 
 object SbtServletPlugin extends Build {
 
-  lazy val jettyVersion = "9.2.11.v20150529"
+  lazy val jettyVersion = "9.2.12.v20150709"
 
   lazy val root = Project(id = "sbt-servlet-plugin", base = file("."),
     settings = Seq(
       organization := "org.skinny-framework",
       name := "sbt-servlet-plugin",
-      version := "1.4.0-SNAPSHOT",
+      version := "2.0.0",
       sbtPlugin := true,
       scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
       incOptions := sbt.inc.IncOptions.Default,
