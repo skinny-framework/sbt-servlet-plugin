@@ -13,8 +13,8 @@ object ServletPlugin extends Plugin {
     container.settings ++
       inConfig(conf)(WebappPlugin.webappSettings0) ++
       Seq(
-        apps in container.Configuration <<= (deployment in conf) map {
-          d => Seq("/" -> d)
+        apps in container.Configuration := {
+          Seq("/" -> (deployment in conf).value)
         }
       ) ++ WarPlugin.globalWarSettings
   }

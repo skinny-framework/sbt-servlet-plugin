@@ -6,7 +6,7 @@ lazy val root = Project(id = "sbt-servlet-plugin", base = file("."),
   settings = Seq(
     organization := "org.skinny-framework",
     name := "sbt-servlet-plugin",
-    version := "2.1.1",
+    version := "2.2.1-SNAPSHOT",
     sbtPlugin := true,
     scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
     incOptions := sbt.inc.IncOptions.Default,
