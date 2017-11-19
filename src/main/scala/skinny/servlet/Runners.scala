@@ -15,7 +15,7 @@ object Runners {
    * classloader used to run this plugin.
    */
   private class RunnerLoader(runnerClassName: String, urls: Array[URL],
-      parent: ClassLoader) extends LoaderBase(urls, parent) {
+    parent: ClassLoader) extends LoaderBase(urls, parent) {
     def doLoadClass(className: String): Class[_] = {
       if (isRunnerClass(className)) findClass(className)
       else parent.loadClass(className)

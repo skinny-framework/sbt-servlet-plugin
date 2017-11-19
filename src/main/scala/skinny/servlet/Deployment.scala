@@ -8,6 +8,5 @@ case class Deployment(
   scanDirectories: Seq[File],
   scanInterval: Int,
   env: Option[File],
-  webInfIncludeJarPattern: Option[String]
-)
+  webInfIncludeJarPattern: Option[String])
 

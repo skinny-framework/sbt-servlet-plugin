@@ -24,8 +24,7 @@ object WarPlugin extends Plugin {
       fullClasspath in classpathConfig in packageWar,
       excludeFilter,
       warPostProcess,
-      streams
-    ) map {
+      streams) map {
         (classesAsJar, name, version, webappResources, target, fullClasspath, filter, postProcess, s) =>
 
           val classpath = fullClasspath.map(_.data)
@@ -95,8 +94,7 @@ object WarPlugin extends Plugin {
         warPostProcess := { _ => () },
         classesAsJar := false,
         `package` := (packageWar dependsOn packageWebapp).value,
-        packageWebapp := packageWarTask(classpathConfig).value
-      )
+        packageWebapp := packageWarTask(classpathConfig).value)
   }
 
   private def warSettings0: Seq[Setting[_]] = warSettings0(DefaultClasspathConf)

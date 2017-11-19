@@ -29,8 +29,7 @@ class Jetty9Runner extends Runner {
     apps: Seq[(String, Deployment)],
     customConf: Boolean,
     confFiles: Seq[File],
-    confXml: NodeSeq
-  ) {
+    confXml: NodeSeq) {
 
     if (runningServer != null) {
       return
@@ -100,8 +99,7 @@ class Jetty9Runner extends Runner {
       Seq(
         new EnvConfiguration,
         new PlusConfiguration,
-        new AnnotationConfiguration
-      )
+        new AnnotationConfiguration)
     } catch {
       case e: NoClassDefFoundError => Seq.empty
     }
@@ -112,8 +110,7 @@ class Jetty9Runner extends Runner {
       new WebXmlConfiguration,
       new MetaInfConfiguration,
       new FragmentConfiguration,
-      new JettyWebXmlConfiguration
-    ) ++ annotationConfigs
+      new JettyWebXmlConfiguration) ++ annotationConfigs
   }
 
   private[this] def setEnvConfiguration(context: WebAppContext, file: File) {
@@ -131,8 +128,7 @@ class Jetty9Runner extends Runner {
       context.getInitParams.put("org.eclipse.jetty.servlet.Default.useFileMappedBuffer", "false")
     }
     context.setBaseResource(new ResourceCollection(
-      webappResources.map(_.getPath).toArray
-    ))
+      webappResources.map(_.getPath).toArray))
     setContextLoader(context, classpath)
 
     context.setExtraClasspath(classpath.map(_.getAbsolutePath).mkString(";"))
@@ -147,8 +143,7 @@ class Jetty9Runner extends Runner {
       val scanner = new Scanner(
         scanDirs = scanDirectories,
         scanInterval = scanInterval,
-        thunk = () => reload(contextPath)
-      )
+        thunk = () => reload(contextPath))
       scanner.start()
     }
     contexts += contextPath -> (context, deployment)

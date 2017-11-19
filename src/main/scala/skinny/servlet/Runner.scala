@@ -10,8 +10,7 @@ import scala.xml.NodeSeq
 object Runner {
 
   def runners = Seq(
-    "skinny.servlet.Jetty9Runner"
-  )
+    "skinny.servlet.Jetty9Runner")
 
   def packages = Seq("org.eclipse.jetty")
 
@@ -60,8 +59,7 @@ trait Runner {
     apps: Seq[(String, Deployment)],
     customConf: Boolean,
     confFiles: Seq[File],
-    confXml: NodeSeq
-  ): Unit
+    confXml: NodeSeq): Unit
 
   def reload(context: String): Unit
 

@@ -30,8 +30,7 @@ object WebappPlugin extends Plugin {
     webInfIncludeJarPattern := None,
     deployment := {
       Deployment(webappResources.value, (fullClasspath in classpathConfig).value.map(_.data), scanDirectories.value, scanInterval.value, env.value, webInfIncludeJarPattern.value)
-    }
-  )
+    })
 
   def webappSettings0: Seq[Setting[_]] = webappSettings0(DefaultClasspathConf)
 

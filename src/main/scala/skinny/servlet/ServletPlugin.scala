@@ -15,8 +15,7 @@ object ServletPlugin extends Plugin {
       Seq(
         apps in container.Configuration := {
           Seq("/" -> (deployment in conf).value)
-        }
-      ) ++ WarPlugin.globalWarSettings
+        }) ++ WarPlugin.globalWarSettings
   }
 
   def webappSettings: Seq[Setting[_]] = WebappPlugin.webappSettings

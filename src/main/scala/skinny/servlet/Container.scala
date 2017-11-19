@@ -24,8 +24,7 @@ case class Container(name: String) {
   def runner = attribute
 
   private implicit def attributeToRunner[Runner](
-    key: AttributeKey[Runner]
-  )(implicit state: State): Runner = {
+    key: AttributeKey[Runner])(implicit state: State): Runner = {
     state.get(key).get
   }
 
@@ -42,8 +41,7 @@ case class Container(name: String) {
         Project.runTask(key, state).map(_._2).getOrElse {
           sys.error("Error getting " + key)
         },
-        state.log
-      )
+        state.log)
     }
 
     def newRunner(ref: ProjectRef, state: State) = {
@@ -55,8 +53,7 @@ case class Container(name: String) {
   }
 
   def globalSettings: Seq[Def.Setting[Seq[Configuration]]] = Seq(
-    ivyConfigurations += Configuration
-  )
+    ivyConfigurations += Configuration)
 
   def containerSettings = Seq(
     managedClasspath := managedJars(Configuration, classpathTypes.value, update.value),
@@ -85,8 +82,7 @@ case class Container(name: String) {
         apps = apps.value,
         customConf = cc,
         confFiles = cf,
-        confXml = cx
-      )
+        confXml = cx)
     },
     discoveredContexts := (apps map discoverContexts storeAs discoveredContexts triggeredBy start).value,
     reload := reloadTask(state).evaluated,
@@ -101,8 +97,7 @@ case class Container(name: String) {
         apps = apps.value,
         customConf = cc,
         confFiles = cf,
-        confXml = cx
-      )
+        confXml = cx)
     },
     ServletKeys.test := {
       (stop in Configuration)
@@ -111,8 +106,7 @@ case class Container(name: String) {
     }.value,
     customConfiguration := false,
     configurationFiles := Seq(),
-    configurationXml := NodeSeq.Empty
-  )
+    configurationXml := NodeSeq.Empty)
 
   def settings = globalSettings ++ inConfig(Configuration)(containerSettings)
 
@@ -124,8 +118,7 @@ case class Container(name: String) {
 
   def deploy(conf: Configuration)(map: (String, ProjectReference)*): SettingSeq = {
     settings ++ inConfig(Configuration)(Seq(
-      apps := map.map(pairToTask(conf)).join.value
-    ))
+      apps := map.map(pairToTask(conf)).join.value))
   }
 
   def toSslSettings(sslConfig: Option[(String, Int, String, String, String)]): Option[SslSettings] = {
@@ -135,8 +128,7 @@ case class Container(name: String) {
           addr = new InetSocketAddress(sslHost, sslPort),
           keystore = keystore,
           password = password,
-          keyPassword = keyPassword
-        )
+          keyPassword = keyPassword)
     }
   }
 
