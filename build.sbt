@@ -1,12 +1,12 @@
 import sbt._
 import sbt.Keys._
 
-lazy val jettyVersion = "9.3.21.v20170918"
+lazy val jettyVersion = "9.3.22.v20171030"
 lazy val root = Project(id = "sbt-servlet-plugin", base = file("."),
   settings = Seq(
     organization := "org.skinny-framework",
     name := "sbt-servlet-plugin",
-    version := "2.1.6",
+    version := "2.1.7",
     sbtPlugin := true,
     scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
     incOptions := sbt.inc.IncOptions.Default,
@@ -56,4 +56,4 @@ lazy val root = Project(id = "sbt-servlet-plugin", base = file("."),
         </developer>
       </developers>)
   )
-).settings(scalariformSettings)
+)
