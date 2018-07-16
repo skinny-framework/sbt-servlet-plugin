@@ -4,8 +4,6 @@ import scala.language.implicitConversions
 
 import java.net.InetSocketAddress
 
-import sbinary.DefaultProtocol.StringFormat
-import sbt.Cache.seqFormat
 import sbt.Classpaths.managedJars
 import sbt.Keys._
 import sbt.Scoped._
@@ -15,11 +13,13 @@ import skinny.servlet.ServletKeys._
 
 import scala.xml.NodeSeq
 
+import sjsonnew.BasicJsonProtocol._
+
 case class Container(name: String) {
 
   type SettingSeq = Seq[Setting[_]]
 
-  def Configuration = config(name).hide
+  lazy val Configuration = config(name).hide
   def attribute = AttributeKey[Runner](name)
   def runner = attribute
 
@@ -78,7 +78,7 @@ case class Container(name: String) {
       state.value.start(
         addr = new InetSocketAddress(host.value, port.value),
         ssl = toSslSettings(ssl.value),
-        logger = state.value.log.asInstanceOf[AbstractLogger],
+        logger = new FullLogger(state.value.log),
         apps = apps.value,
         customConf = cc,
         confFiles = cf,
@@ -93,7 +93,7 @@ case class Container(name: String) {
       state.value.start(
         addr = new InetSocketAddress(host.value, port.value),
         ssl = toSslSettings(ssl.value),
-        logger = state.value.log.asInstanceOf[AbstractLogger],
+        logger = new FullLogger(state.value.log),
         apps = apps.value,
         customConf = cc,
         confFiles = cf,

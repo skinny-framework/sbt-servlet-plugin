@@ -1,9 +1,11 @@
 package skinny.servlet
 
 import sbt._
-import classpath._
+
 import scala.reflect.Manifest
 import java.net.URL
+
+import sbt.internal.inc.classpath.{ DualLoader, LoaderBase }
 
 object Runners {
 
