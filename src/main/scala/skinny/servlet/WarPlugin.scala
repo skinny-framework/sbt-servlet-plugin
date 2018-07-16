@@ -18,7 +18,7 @@ object WarPlugin extends AutoPlugin {
   def packageWarTask(classpathConfig: Configuration): Initialize[Task[Seq[(File, String)]]] = Def.task {
     val classpath = (fullClasspath in classpathConfig in packageWar).value.map(_.data)
     val warPath = target.value / "webapp"
-    val log = streams.value.log.asInstanceOf[AbstractLogger]
+    val log = new FullLogger(streams.value.log)
     val webInfPath = warPath / "WEB-INF"
     val webLibDirectory = webInfPath / "lib"
     val classesTargetDirectory = webInfPath / "classes"
