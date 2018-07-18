@@ -15,7 +15,7 @@ import org.eclipse.jetty.webapp._
 import org.eclipse.jetty.webapp.Configuration
 import org.eclipse.jetty.xml.XmlConfiguration
 import sbt._
-import sbt.classpath.ClasspathUtilities.toLoader
+import sbt.internal.inc.classpath.ClasspathUtilities.toLoader
 import scala.collection.JavaConverters._
 
 import scala.xml.NodeSeq

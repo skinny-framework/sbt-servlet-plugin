@@ -1,8 +1,7 @@
 package skinny.servlet
 
 import sbt._
-import classpath._
-import ClasspathUtilities._
+import sbt.internal.inc.classpath.ClasspathUtilities._
 import java.net.InetSocketAddress
 import java.lang.reflect.InvocationTargetException
 import scala.xml.NodeSeq

@@ -1,6 +1,6 @@
 enablePlugins(ServletPlugin)
-
 ServletPlugin.projectSettings
 
-libraryDependencies += "org.eclipse.jetty" % "jetty-webapp" % "9.2.19.v20160908" % "container"
+libraryDependencies += "org.eclipse.jetty" % "jetty-webapp" % "9.4.11.v20180605" % "container"
+
 fork in run := true

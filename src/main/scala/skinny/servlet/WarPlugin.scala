@@ -1,10 +1,11 @@
 package skinny.servlet
 
 import sbt.{ `package` => _, _ }
+import Path.{ relativeTo, flat }
 import Def.Initialize
+import Defaults.packageTaskSettings
 import Keys._
 import ServletKeys._
-import _root_.sbt.Defaults.{ packageTaskSettings, inDependencies }
 
 object WarPlugin extends AutoPlugin {
 
@@ -17,14 +18,14 @@ object WarPlugin extends AutoPlugin {
   def packageWarTask(classpathConfig: Configuration): Initialize[Task[Seq[(File, String)]]] = Def.task {
     val classpath = (fullClasspath in classpathConfig in packageWar).value.map(_.data)
     val warPath = target.value / "webapp"
-    val log = streams.value.log.asInstanceOf[AbstractLogger]
+    val log = new FullLogger(streams.value.log)
     val webInfPath = warPath / "WEB-INF"
     val webLibDirectory = webInfPath / "lib"
     val classesTargetDirectory = webInfPath / "classes"
     val filter = excludeFilter.value
 
     val (libs, directories) = classpath.toList.filter(_.exists).partition(!_.isDirectory)
-    val wcToCopy = for {
+    val wcToCopy: Seq[(File, File)] = for {
       dir <- webappResources.value.reverse
       file <- (dir ** (-filter)).get
       target = Path.rebase(dir, warPath)(file).get
@@ -36,10 +37,14 @@ object WarPlugin extends AutoPlugin {
       }
     }
 
-    val copiedWebapp = IO.copy(wcToCopy, overwrite = true, preserveLastModified = true)
+    val copiedWebapp = IO.copy(
+      sources = wcToCopy,
+      overwrite = true,
+      preserveLastModified = true,
+      preserveExecutable = false)
     val copiedLibs = copyFlat(libs, webLibDirectory)
 
-    val toRemove = scala.collection.mutable.HashSet((warPath ** "*").get.toSeq: _*)
+    val toRemove = scala.collection.mutable.HashSet((warPath ** "*").get: _*)
     if (classesAsJar.value) {
       val classesAndResources = for {
         dir <- directories.reverse
@@ -55,7 +60,11 @@ object WarPlugin extends AutoPlugin {
         file <- (dir ** (-filter)).get
         target = Path.rebase(dir, classesTargetDirectory)(file).get
       } yield (file, target)
-      val copiedClasses = IO.copy(classesAndResources, overwrite = true, preserveLastModified = true)
+      val copiedClasses = IO.copy(
+        sources = classesAndResources,
+        overwrite = true,
+        preserveLastModified = true,
+        preserveExecutable = false)
       toRemove --= copiedClasses
     }
 

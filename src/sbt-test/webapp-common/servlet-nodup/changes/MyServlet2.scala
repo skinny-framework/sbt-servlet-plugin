@@ -2,9 +2,9 @@ package test
 
 import java.util.Collections
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServlet
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 class MyServlet extends HttpServlet {
 
@@ -19,6 +19,8 @@ class MyServlet extends HttpServlet {
     resp.setContentType("text/html")
     resp.getWriter().print(html.toString)
   }
+
   def check28(f: Int = 3) = f
+
 }
 
