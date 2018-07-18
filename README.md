@@ -1,8 +1,6 @@
 ## sbt-servlet-plugin
 
-An sbt plugin to build Servlet applications which is based on xsbt-web-plugin 0.9.1.
-xsbt-web-plugin 0.9 is very suitable for our use case.
-The version implementation allows to reload Scalate templates without restarting Servlet containers and Servlet invocation is faster than 1.x.
+This is a sbt plugin which is based on xsbt-web-plugin 0.9.1. The reason why we forked the sbt plugin is that the version allowed us to reload Scalate templates without restarting a Servlet container every time a user changes them a bit.
 
 [![Build Status](https://travis-ci.org/skinny-framework/sbt-servlet-plugin.svg?branch=master)](https://travis-ci.org/skinny-framework/sbt-servlet-plugin)
 
@@ -13,28 +11,28 @@ The version implementation allows to reload Scalate templates without restarting
 Add this sbt plugin to your `project/plugins.sbt`.
 
 ```scala
-addSbtPlugin("org.skinny-framework" % "sbt-servlet-plugin" % "2.2.5")
+addSbtPlugin("org.skinny-framework" % "sbt-servlet-plugin" % "3.0.0")
 ```
 
 ### build.sbt
-
-```scala
-servletSettings
-```
-
-### project/Build.scala 
 
 Add Jetty dependencies into "container" scope.
 
 ```scala
 import skinny.servlet._, ServletPlugin._, ServletKeys._
 
-lazy val jettyVersion = "9.4.9.v20180320"
+lazy val jettyVersion = "9.4.11.v20180605"
 
-libraryDependencies ++= Seq(
-  "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container",
-  "org.eclipse.jetty" % "jetty-plus"   % jettyVersion % "container"
-)
+lazy val root = (project in file("."))
+  .settings(ServletPlugin.projectSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.eclipse.jetty" % "jetty-webapp"      % jettyVersion % "container",
+      "org.eclipse.jetty" % "jetty-plus"        % jettyVersion % "container",
+      "javax.servlet"     % "javax.servlet-api" % "3.1.0"      % "provided"
+    )
+  )
+  .enablePlugins(ServletPlugin)
 ```
 
 ## License
