@@ -1,8 +1,12 @@
 > update
 # verify that it fails without Jetty running
--> check-page It works
+-> getPage
+-> checkPage It works
 
 > container:start
 # verify it now works with our servlet running
-> check-page It works
+
+> getPage
+> checkPage It works
+
 > container:stop

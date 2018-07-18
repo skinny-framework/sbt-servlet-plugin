@@ -23,4 +23,5 @@ class XwpTemplateServlet extends HttpServlet {
     val responseBody: NodeSeq = <html><body><h1>{ status }</h1></body></html>
     response.getWriter.write(responseBody.toString)
   }
+
 }
