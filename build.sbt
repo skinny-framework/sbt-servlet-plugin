@@ -1,12 +1,12 @@
 import sbt._
 import sbt.Keys._
 
-lazy val jettyVersion = "9.4.11.v20180605"
+lazy val jettyVersion = "9.4.12.v20180830"
 
-lazy val root = (project in file(".")).settings(
+lazy val root = (project in file(".")).enablePlugins(SbtPlugin).settings(
   organization := "org.skinny-framework",
   name := "sbt-servlet-plugin",
-  version := "3.0.4",
+  version := "3.0.5",
   sbtPlugin := true,
   scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
   transitiveClassifiers in Global := Seq(Artifact.SourceClassifier),
@@ -17,6 +17,8 @@ lazy val root = (project in file(".")).settings(
     "org.eclipse.jetty" % "jetty-annotations" % jettyVersion,
     "org.eclipse.jetty" % "jetty-plus"        % jettyVersion
   ),
+  scriptedBufferLog := false,
+  scriptedLaunchOpts += s"-Dplugin.version=${version.value}",
   publishMavenStyle := true,
   publishTo := Some(
     if (isSnapshot.value) Opts.resolver.sonatypeSnapshots else Opts.resolver.sonatypeStaging
