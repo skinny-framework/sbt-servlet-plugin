@@ -13,6 +13,7 @@ lazy val checkPage = inputKey[Unit]("checkPage")
 
 val jettyVersion = "9.4.12.v20180830"
 libraryDependencies ++= Seq(
+  "javax.annotation"       %  "javax.annotation-api" % "1.3.2"   % "compile",
   "org.eclipse.jetty"      %  "jetty-webapp"      % jettyVersion % "container",
   "org.eclipse.jetty"      %  "jetty-plus"        % jettyVersion % "container",
   "javax.servlet"          %  "javax.servlet-api" % "3.1.0"      % "provided",
