@@ -35,6 +35,22 @@ lazy val root = (project in file("."))
   .enablePlugins(ServletPlugin)
 ```
 
+## Development
+
+### Run tests for this sbt plugin
+
+```
+sbt scripted
+```
+
+### Publish new versions
+
+https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html
+
+```
+sbt publishSigned sonatypeRelease
+```
+
 ## License
 
 the BSD 3-Clause license
