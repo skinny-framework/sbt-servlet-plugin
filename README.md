@@ -11,7 +11,7 @@ This is a sbt plugin which is based on xsbt-web-plugin 0.9.1. The reason why we 
 Add this sbt plugin to your `project/plugins.sbt`.
 
 ```scala
-addSbtPlugin("org.skinny-framework" % "sbt-servlet-plugin" % "3.0.5")
+addSbtPlugin("org.skinny-framework" % "sbt-servlet-plugin" % "3.0.6")
 ```
 
 ### build.sbt

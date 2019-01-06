@@ -1,12 +1,12 @@
 import sbt._
 import sbt.Keys._
 
-lazy val jettyVersion = "9.4.12.v20180830"
+lazy val jettyVersion = "9.4.14.v20181114"
 
 lazy val root = (project in file(".")).enablePlugins(SbtPlugin).settings(
   organization := "org.skinny-framework",
   name := "sbt-servlet-plugin",
-  version := "3.0.5",
+  version := "3.0.6",
   sbtPlugin := true,
   scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
   transitiveClassifiers in Global := Seq(Artifact.SourceClassifier),
