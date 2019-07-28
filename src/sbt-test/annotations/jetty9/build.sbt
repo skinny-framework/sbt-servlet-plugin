@@ -11,13 +11,13 @@ def indexFile = new java.io.File("index.html")
 lazy val getPage = taskKey[Unit]("getPage")
 lazy val checkPage = inputKey[Unit]("checkPage")
 
-val jettyVersion = "9.4.12.v20180830"
+val jettyVersion = "9.4.19.v20190610"
 libraryDependencies ++= Seq(
   "javax.annotation"       %  "javax.annotation-api" % "1.3.2"   % "compile",
   "org.eclipse.jetty"      %  "jetty-webapp"      % jettyVersion % "container",
   "org.eclipse.jetty"      %  "jetty-plus"        % jettyVersion % "container",
   "javax.servlet"          %  "javax.servlet-api" % "3.1.0"      % "provided",
-  "org.scala-lang.modules" %% "scala-xml"         % "1.1.0"
+  "org.scala-lang.modules" %% "scala-xml"         % "1.2.0"
 )
 
 lazy val Conf = config("container")
