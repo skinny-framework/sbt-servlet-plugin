@@ -1,7 +1,7 @@
 import sbt._
 import sbt.Keys._
 
-lazy val jettyVersion = "9.4.16.v20190411"
+lazy val jettyVersion = "9.4.19.v20190610"
 
 lazy val root = (project in file(".")).enablePlugins(SbtPlugin).settings(
   organization := "org.skinny-framework",
