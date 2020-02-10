@@ -11,7 +11,7 @@ This is a sbt plugin which is based on xsbt-web-plugin 0.9.1. The reason why we 
 Add this sbt plugin to your `project/plugins.sbt`.
 
 ```scala
-addSbtPlugin("org.skinny-framework" % "sbt-servlet-plugin" % "3.0.9")
+addSbtPlugin("org.skinny-framework" % "sbt-servlet-plugin" % "3.0.10")
 ```
 
 ### build.sbt
@@ -21,7 +21,7 @@ Add Jetty dependencies into "container" scope.
 ```scala
 import skinny.servlet._, ServletPlugin._, ServletKeys._
 
-lazy val jettyVersion = "9.4.19.v20190610"
+lazy val jettyVersion = "9.4.26.v20200117"
 
 lazy val root = (project in file("."))
   .settings(ServletPlugin.projectSettings)
